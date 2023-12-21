@@ -16,7 +16,7 @@ const MobileNavbar = () => {
             key={item.name}
             className={`${
               pathname === item.link ? "text-black" : "text-gray-400"
-            } flex flex-col items-center py-2 px-6`}
+            } flex flex-col items-center py-2 mobilePx`}
           >
             <div className="text-[25px]">
               {pathname === item.link ? item.isActive : item.icon}
