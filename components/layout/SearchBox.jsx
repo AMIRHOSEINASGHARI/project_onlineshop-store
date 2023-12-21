@@ -8,6 +8,7 @@ const SearchBox = () => {
   const changeHandler = (e) => {
     setSearchTerm(e.target.value);
   };
+
   return (
     <div className="bg-gray-100 flex items-center w-full gap-3 py-2 px-3 rounded-xl">
       <button type="submit">
@@ -18,7 +19,7 @@ const SearchBox = () => {
         value={searchTerm}
         onChange={changeHandler}
         placeholder="Search products..."
-        className="bg-transparent outline-none w-full"
+        className="bg-transparent outline-none w-full placeholder:text-sm placeholder:text-gray-400"
       />
     </div>
   );
