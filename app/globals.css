@@ -17,9 +17,15 @@ body {
 .mw {
   @apply max-w-[1500px] mx-auto;
 }
+.mw2 {
+  @apply max-w-[1200px] mx-auto;
+}
 .pagePT {
   @apply pt-[70px];
 }
 .cardShadow {
   @apply shadow-[0_5px_15px_#e2e8f0];
+}
+.heading1 {
+  @apply font-black text-[20px] tracking-tight mb-5 text-slate-700;
 }

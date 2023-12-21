@@ -1,4 +1,5 @@
 import "./globals.css";
+import "@splidejs/react-splide/css";
 import Header from "@/components/layout/Header";
 import MobileNavbar from "@/components/layout/MobileNavbar";
 
