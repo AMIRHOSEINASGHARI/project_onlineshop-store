@@ -1,4 +1,5 @@
 import "./globals.css";
+import MobileNavbar from "@/components/layout/MobileNavbar";
 
 export const metadata = {
   title: "Online Shop Store",
@@ -8,7 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MobileNavbar />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
