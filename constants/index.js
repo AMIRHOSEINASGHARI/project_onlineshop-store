@@ -12,8 +12,12 @@ import { HiOutlineDeviceMobile } from "react-icons/hi";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { FiHeadphones, FiPrinter } from "react-icons/fi";
 import { CgAppleWatch } from "react-icons/cg";
-import { MdOutlinePhotoCamera } from "react-icons/md";
-import { FaComputer } from "react-icons/fa6";
+import {
+  MdOutlinePhotoCamera,
+  MdFavoriteBorder,
+  MdOutlineModeComment,
+} from "react-icons/md";
+import { FaComputer, FaHourglassEnd } from "react-icons/fa6";
 import { LuHardDrive } from "react-icons/lu";
 import { SlScreenTablet } from "react-icons/sl";
 import { LuSpeaker } from "react-icons/lu";
@@ -129,5 +133,23 @@ export const productsCategory = [
     bgColor: "#ffe4e6",
     textColor: "#f43f5e",
     link: "/products?category=speaker",
+  },
+];
+
+export const profileLinks = [
+  {
+    name: "Orders",
+    icon: <FaHourglassEnd />,
+    link: "/profile/orders",
+  },
+  {
+    name: "Favorites",
+    icon: <MdFavoriteBorder />,
+    link: "/profile/fave",
+  },
+  {
+    name: "Comments",
+    icon: <MdOutlineModeComment />,
+    link: "/profile/comments",
   },
 ];

@@ -28,6 +28,7 @@ const Carousel = ({ data, moreLink, type, speed, arrows }) => {
               width={250}
               height={250}
               priority
+              alt="offer"
             />
             <p className="bg-black text-white font-bold rounded-full py-2 px-5 text-center">
               See More
