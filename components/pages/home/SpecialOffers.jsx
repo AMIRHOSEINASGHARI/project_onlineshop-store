@@ -1,14 +1,17 @@
 import Carousel from "@/components/shared/Carousel";
-import connectDB from "@/utils/connectDB";
-import { StoreDashboardProduct } from "@/utils/models/product";
 import React from "react";
 
-const SpecialOffers = async () => {
+async function getData() {
   const res = await fetch(
-    `${process.env.API_URL}/api/store/products/special-offer`
+    `${process.env.API_URL}/api/store/products/special-offer`,
+    { cache: "no-store" }
   );
   const data = await res.json();
-  console.log(data.special.length);
+  return data;
+}
+
+const SpecialOffers = async () => {
+  const data = await getData();
 
   if (!data.success) {
     return (
@@ -21,9 +24,15 @@ const SpecialOffers = async () => {
   if (data.success) {
     return (
       <section>
-        <h1 className="heading1">Special Offers</h1>
+        <h1 className="heading1 mb-3">Special Offers</h1>
         <div className="border rounded-3xl overflow-hidden py-5 px-[3px]">
-          <Carousel data={JSON.parse(JSON.stringify(data.special))} />
+          <Carousel
+            type="slide"
+            speed={200}
+            arrows
+            moreLink="/products/special-offers"
+            data={JSON.parse(JSON.stringify(data.special))}
+          />
         </div>
       </section>
     );

@@ -5,7 +5,7 @@ import React from "react";
 const CategorySection = () => {
   return (
     <section>
-      <h1 className="heading1">Explore by category</h1>
+      <h1 className="heading1 mb-3">Explore by category</h1>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
         {productsCategory.map((item) => (
           <Link

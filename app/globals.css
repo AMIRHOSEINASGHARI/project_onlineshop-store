@@ -27,5 +27,5 @@ body {
   @apply shadow-[0_5px_15px_#e2e8f0];
 }
 .heading1 {
-  @apply font-black text-[20px] tracking-tight mb-5 text-slate-700;
+  @apply font-black text-[20px] tracking-tight text-slate-700;
 }

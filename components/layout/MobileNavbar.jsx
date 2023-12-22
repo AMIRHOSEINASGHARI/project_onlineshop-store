@@ -9,7 +9,7 @@ const MobileNavbar = () => {
 
   return (
     <nav className="lg:hidden border-t-2 fixed w-full bottom-0 z-10 bg-white overflow-auto">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between">
         {navLinks.map((item) => (
           <Link
             href={item.link}

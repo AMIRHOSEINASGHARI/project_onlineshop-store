@@ -6,7 +6,7 @@ import DesktopNavbar from "./DesktopNavbar";
 
 const Header = () => {
   return (
-    <div className="fixed top-0 1-10 bg-white w-full border-b-2">
+    <div className="fixed top-0 z-10 bg-white w-full border-b-2">
       <header className="flex items-center justify-between gap-5 py-2 mobilePx mw w-full">
         <Link href="/">
           <Image
