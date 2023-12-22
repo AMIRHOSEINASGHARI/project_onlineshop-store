@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import MobileNavbar from "@/components/layout/MobileNavbar";
 import { Toaster } from "react-hot-toast";
 import SessionContextProvider from "@/context/SessionContextProvider";
+import CartContextProvider from "@/context/CartContextProvider";
 
 export const metadata = {
   title: "Online Shop Store",
@@ -14,14 +15,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <SessionContextProvider>
-        <body>
-          <div>
-            <Toaster position="top-center" />
-          </div>
-          <MobileNavbar />
-          <Header />
-          <main>{children}</main>
-        </body>
+        <CartContextProvider>
+          <body>
+            <div>
+              <Toaster position="top-center" />
+            </div>
+            <MobileNavbar />
+            <Header />
+            <main>{children}</main>
+          </body>
+        </CartContextProvider>
       </SessionContextProvider>
     </html>
   );
