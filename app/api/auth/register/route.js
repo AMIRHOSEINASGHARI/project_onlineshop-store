@@ -35,10 +35,11 @@ export async function POST(req) {
   }
 
   try {
+    const hashedPassword = await hashPassword(body.password);
     await StoreShopUser.create({
       username: body.username,
       displayName: body.displayName,
-      password: hashPassword(body.password),
+      password: hashedPassword,
     });
 
     return NextResponse.json(

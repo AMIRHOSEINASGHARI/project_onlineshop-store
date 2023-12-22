@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Loader from "../shared/Loader";
 import Image from "next/image";
+import { createUser } from "@/utils/api";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [loader, setLoader] = useState(false);
-  const [pageText, setPageText] = useState("");
   const router = useRouter();
 
   const [form, setForm] = useState({
@@ -25,21 +26,21 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // if (!form.username || !form.displayName || !form.password) {
-    //   return toast.error("Fill all fields requiered!");
-    // } else {
-    //   setLoader(true);
-    //   const result = await createUser(form);
-    //   setLoader(false);
-    //   if (!result.success) {
-    //     return toast.error(result.msg);
-    //   } else {
-    //     setPageText("Redirecting to login page...");
-    //     toast.success(result.msg);
-    //     router.push("/login");
-    //   }
-    // }
+    e.preventDefault();
+
+    if (!form.username || !form.displayName || !form.password) {
+      return toast.error("Fill all fields requiered!");
+    } else {
+      setLoader(true);
+      const result = await createUser(form);
+      setLoader(false);
+      if (!result.success) {
+        return toast.error(result.msg);
+      } else {
+        toast.success(result.msg);
+        router.push("/login");
+      }
+    }
   };
 
   return (
