@@ -8,6 +8,7 @@ async function getData() {
   const data = await res.json();
   return data;
 }
+
 const Products = async () => {
   const data = await getData();
 
