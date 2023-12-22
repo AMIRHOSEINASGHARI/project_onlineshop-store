@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { StoreShopUser } from "./models/user";
 import connectDB from "./connectDB";
+import { verifyPassword } from "./functions";
 
 export const authOptions = {
   session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60 },
@@ -12,16 +13,20 @@ export const authOptions = {
         const isUser = await StoreShopUser.findOne({ username });
 
         if (!isUser) {
-          throw new Error("User not found");
-        } else if (isUser.password !== password) {
-          throw new Error("Username or password is incorrect!");
-        } else {
-          const user = {
-            email: username,
-            name: isUser.displayName,
-          };
-          return user;
+          throw new Error("User not found!");
         }
+
+        const isValid = await verifyPassword(password, isUser.password);
+
+        if (!isValid) {
+          throw new Error("Username or password is incorrect!");
+        }
+
+        const user = {
+          email: username,
+          name: isUser.displayName,
+        };
+        return user;
       },
     }),
   ],
