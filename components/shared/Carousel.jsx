@@ -19,7 +19,7 @@ const Carousel = ({ data }) => {
       }}
     >
       <SplideSlide className="flex items-center flex-col h-full justify-center ">
-        <Link href="/products/incredibble-offer">
+        <Link href="/products/special-offers">
           <Image
             src="/assets/offer.png"
             className="my-10 mr-5"

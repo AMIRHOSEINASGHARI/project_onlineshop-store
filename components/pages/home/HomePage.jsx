@@ -1,12 +1,12 @@
 import React from "react";
 import CategorySection from "./CategorySection";
-import Incredibble from "./Incredibble";
+import SpecialOffers from "./SpecialOffers";
 
 const HomePage = () => {
   return (
     <div className="pagePT mobilePx mobilePb mw2 space-y-16">
       <CategorySection />
-      <Incredibble />
+      <SpecialOffers />
     </div>
   );
 };
