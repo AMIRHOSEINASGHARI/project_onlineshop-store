@@ -7,8 +7,6 @@ import Link from "next/link";
 import React from "react";
 
 const Carousel = ({ data, moreLink, type, speed, arrows }) => {
-  console.log(data);
-
   return (
     <Splide
       options={{
