@@ -3,6 +3,7 @@ import "@splidejs/react-splide/css";
 import Header from "@/components/layout/Header";
 import MobileNavbar from "@/components/layout/MobileNavbar";
 import { Toaster } from "react-hot-toast";
+import SessionContextProvider from "@/context/SessionContextProvider";
 
 export const metadata = {
   title: "Online Shop Store",
@@ -12,14 +13,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <div>
-          <Toaster position="top-center" />
-        </div>
-        <MobileNavbar />
-        <Header />
-        <main>{children}</main>
-      </body>
+      <SessionContextProvider>
+        <body>
+          <div>
+            <Toaster position="top-center" />
+          </div>
+          <MobileNavbar />
+          <Header />
+          <main>{children}</main>
+        </body>
+      </SessionContextProvider>
     </html>
   );
 }
