@@ -7,6 +7,7 @@ import { FaHashtag, FaHourglassEnd } from "react-icons/fa6";
 import { MdFavoriteBorder, MdOutlineModeComment } from "react-icons/md";
 
 const ProductCard = ({
+  _id,
   category,
   comments,
   discount,
@@ -47,7 +48,7 @@ const ProductCard = ({
           </div>
         )}
         <Link
-          href={`/products/${createSlug(title)}`}
+          href={`/products/${_id}`}
           className="w-full h-[180px] overflow-hidden flex justify-center items-center bg-gray-100 p-3"
           target="_blank"
         >
@@ -80,7 +81,7 @@ const ProductCard = ({
           </span>
         </div>
         <Link
-          href={`/products/${createSlug(title.toLowerCase())}`}
+          href={`/products/${_id}`}
           className="font-bold text-justify hover:text-blue-600 transition duration-100"
           target="_blank"
         >
