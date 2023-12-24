@@ -29,3 +29,6 @@ body {
 .heading1 {
   @apply font-black text-[20px] tracking-tight text-slate-700;
 }
+.heading2 {
+  @apply font-black text-[30px] tracking-tight text-primary;
+}

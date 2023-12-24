@@ -4,6 +4,7 @@ import ProductActions from "./ProductActions";
 import Link from "next/link";
 import { reducePrice } from "@/utils/functions";
 import DescriptionSection from "./DescriptionSection";
+import CommentsSection from "./CommentsSection";
 
 const ProductDetailsPage = ({
   _id,
@@ -115,8 +116,13 @@ const ProductDetailsPage = ({
           </div>
         </div>
       </section>
-      <section>
+      <section className="space-y-10">
         {description && <DescriptionSection description={description} />}
+        <CommentsSection
+          comments={comments}
+          productId={_id}
+          productTitle={title}
+        />
       </section>
     </div>
   );

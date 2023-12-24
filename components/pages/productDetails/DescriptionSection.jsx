@@ -7,8 +7,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 const DescriptionSection = ({ description }) => {
   const [more, setMore] = useState(false);
   return (
-    <div className="w-full">
-      <h1 className="heading1 mb-3">Introduction</h1>
+    <div className="w-full rounded-2xl py-3 px-4 lg:px-8 lg:py-6 bg-gray-100">
+      <h1 className="heading2 mb-3">Introduction</h1>
       <p className="text-justify">
         {more
           ? description
@@ -23,7 +23,6 @@ const DescriptionSection = ({ description }) => {
           <MdKeyboardArrowRight />
         </div>
       </button>
-      <div className="w-full h-[5px] rounded-full bg-gray-200 mt-3" />
     </div>
   );
 };
