@@ -7,7 +7,7 @@ const ProductDetails = async ({ params }) => {
     const res = await fetch(
       `${process.env.API_URL}/api/store/products/${params.productId}`,
       {
-        next: { revalidate: 60 * 60 },
+        cache: "no-store",
       }
     );
     const data = await res.json();

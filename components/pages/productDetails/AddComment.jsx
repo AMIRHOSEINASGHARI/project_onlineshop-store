@@ -1,9 +1,11 @@
 "use client";
 
 import Loader from "@/components/shared/Loader";
+import { addComment } from "@/utils/api";
 import { shorterText } from "@/utils/functions";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import toast from "react-hot-toast";
 import { BiCommentAdd } from "react-icons/bi";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -30,9 +32,27 @@ const AddComment = ({ productTitle, productId }) => {
     });
   };
 
-  //TODO: submit form
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!form.title || !form.description) {
+      toast.error("Please fill all fileds");
+      return;
+    }
+
+    setLoading(true);
+    const result = await addComment({
+      ...form,
+      productId,
+    });
+    setLoading(false);
+    if (result.success) {
+      toast.success(result.msg);
+      // TODO: fetch comments in CommentSection cmp
+      closeModal();
+    } else {
+      toast.error(result.msg);
+    }
   };
 
   return (
