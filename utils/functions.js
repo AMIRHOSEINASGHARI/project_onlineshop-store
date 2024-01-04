@@ -28,3 +28,17 @@ export const shorterText = (text, maxCharacter) => {
     return text;
   }
 };
+
+export const isInCart = (state, id) => {
+  const result = !!state.selectedItems.find((el) => el.id === id);
+  return result;
+};
+
+export const quantityCount = (state, id) => {
+  const index = state.selectedItems.findIndex((el) => el.id === id);
+  if (index >= 0) {
+    return state.selectedItems[index].quantity;
+  } else {
+    return null;
+  }
+};

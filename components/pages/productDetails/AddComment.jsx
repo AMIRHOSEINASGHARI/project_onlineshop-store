@@ -4,6 +4,7 @@ import Loader from "@/components/shared/Loader";
 import { addComment } from "@/utils/api";
 import { shorterText } from "@/utils/functions";
 import { Dialog, Transition } from "@headlessui/react";
+import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import toast from "react-hot-toast";
 import { BiCommentAdd } from "react-icons/bi";
@@ -11,6 +12,7 @@ import { IoCloseSharp } from "react-icons/io5";
 
 const AddComment = ({ productTitle, productId }) => {
   let [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     title: "",
@@ -18,6 +20,10 @@ const AddComment = ({ productTitle, productId }) => {
   });
 
   function closeModal() {
+    setForm({
+      title: "",
+      description: "",
+    });
     setIsOpen(false);
   }
 
@@ -48,7 +54,7 @@ const AddComment = ({ productTitle, productId }) => {
     setLoading(false);
     if (result.success) {
       toast.success(result.msg);
-      // TODO: fetch comments in CommentSection cmp
+      router.refresh();
       closeModal();
     } else {
       toast.error(result.msg);

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { reducePrice } from "@/utils/functions";
 import DescriptionSection from "./DescriptionSection";
 import CommentsSection from "./CommentsSection";
+import AddToCartBtns from "./AddToCartBtns";
 
 const ProductDetailsPage = ({
   _id,
@@ -80,6 +81,7 @@ const ProductDetailsPage = ({
                     ></button>
                   ))}
                 </div>
+                {keywords.length !== 0 && <div></div>}
               </div>
             </div>
             {/* ADD TO CART SECTION */}
@@ -109,9 +111,7 @@ const ProductDetailsPage = ({
                   Only {stock} left in stock
                 </p>
               )}
-              <button className="bg-primary w-full rounded-lg text-white font-semibold py-3 text-sm hover:bg-blue-600 transition-all duration-100">
-                Add To Cart
-              </button>
+              <AddToCartBtns productId={_id} />
             </div>
           </div>
         </div>

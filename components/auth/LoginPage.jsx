@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
@@ -12,6 +12,7 @@ const LoginPage = () => {
   const [loader, setLoader] = useState(false);
   const [pageText, setPageText] = useState("");
   const router = useRouter();
+  const backUrl = useSearchParams().get("backUrl");
 
   const [form, setForm] = useState({
     username: "",
@@ -42,7 +43,11 @@ const LoginPage = () => {
       } else {
         setPageText("Redirecting to home page...");
         toast.success("Welcome");
-        router.replace("/");
+        if (backUrl) {
+          router.replace(`${backUrl}`);
+        } else {
+          router.replace("/");
+        }
       }
     }
   };
