@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 
 const MobileNavbar = () => {
   const pathname = usePathname();
+  if (pathname.includes("/login") || pathname.includes("/register"))
+    return null;
 
   return (
     <nav className="lg:hidden border-t-2 fixed w-full bottom-0 z-10 bg-white overflow-auto">

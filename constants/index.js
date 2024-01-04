@@ -20,7 +20,8 @@ import {
 import { FaComputer, FaHourglassEnd } from "react-icons/fa6";
 import { LuHardDrive } from "react-icons/lu";
 import { SlScreenTablet } from "react-icons/sl";
-import { LuSpeaker } from "react-icons/lu";
+import { LuSpeaker, LuUser2 } from "react-icons/lu";
+import { LiaAddressCard } from "react-icons/lia";
 
 export const navLinks = [
   {
@@ -151,5 +152,15 @@ export const profileLinks = [
     name: "Comments",
     icon: <MdOutlineModeComment />,
     link: "/profile/comments",
+  },
+  {
+    name: "Address",
+    icon: <LiaAddressCard />,
+    link: "/profile/address",
+  },
+  {
+    name: "Personal Info",
+    icon: <LuUser2 />,
+    link: "/profile",
   },
 ];

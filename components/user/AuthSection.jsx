@@ -2,10 +2,29 @@
 import { LuUser, LuChevronDown, LuChevronRight } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
-import { profileLinks } from "@/constants";
 import { signOut } from "next-auth/react";
+import { FaHourglassEnd } from "react-icons/fa6";
+import { MdFavoriteBorder, MdOutlineModeComment } from "react-icons/md";
+
+const profileLinks = [
+  {
+    name: "Orders",
+    icon: <FaHourglassEnd />,
+    link: "/profile/orders",
+  },
+  {
+    name: "Favorites",
+    icon: <MdFavoriteBorder />,
+    link: "/profile/fave",
+  },
+  {
+    name: "Comments",
+    icon: <MdOutlineModeComment />,
+    link: "/profile/comments",
+  },
+];
 
 const AuthSection = ({ session }) => {
   return (
