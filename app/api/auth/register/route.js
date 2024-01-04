@@ -40,6 +40,8 @@ export async function POST(req) {
       username: body.username,
       displayName: body.displayName,
       password: hashedPassword,
+      phoneNumber: body.phoneNumber,
+      address: body.address,
     });
 
     return NextResponse.json(

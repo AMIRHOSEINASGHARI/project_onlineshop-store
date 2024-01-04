@@ -16,6 +16,8 @@ const RegisterPage = () => {
     username: "",
     displayName: "",
     password: "",
+    phoneNumber: "",
+    address: "",
   });
 
   const changeHandler = (e) => {
@@ -46,7 +48,7 @@ const RegisterPage = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center justify-center h-screen"
+      className="flex flex-col items-center justify-center my-20"
     >
       <div className="w-[250px] sm:w-[400px]">
         <div className="flex items-center justify-center mb-10">
@@ -89,6 +91,28 @@ const RegisterPage = () => {
               value={form.password}
               onChange={changeHandler}
               placeholder="Password"
+              className="placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Phone Number</label>
+            <input
+              name="phoneNumber"
+              type="number"
+              value={form.phoneNumber}
+              onChange={changeHandler}
+              placeholder="Phone Number"
+              className="placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Address</label>
+            <input
+              name="address"
+              type="text"
+              value={form.address}
+              onChange={changeHandler}
+              placeholder="Address"
               className="placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg"
             />
           </div>
