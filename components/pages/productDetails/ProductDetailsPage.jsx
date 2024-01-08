@@ -23,6 +23,7 @@ const ProductDetailsPage = ({
   likes,
   comments,
   createdAt,
+  product,
 }) => {
   return (
     <div className="pagePT mobilePx lg:pt-[100px] mobilePb mw space-y-20">
@@ -111,7 +112,7 @@ const ProductDetailsPage = ({
                   Only {stock} left in stock
                 </p>
               )}
-              <AddToCartBtns productId={_id} />
+              <AddToCartBtns product={product} />
             </div>
           </div>
         </div>

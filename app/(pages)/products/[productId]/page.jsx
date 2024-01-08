@@ -18,7 +18,7 @@ const ProductDetails = async ({ params }) => {
   if (!data.success)
     return <h1 className="pagePT mobilePx mobilePb mw">{data.msg}</h1>;
 
-  return <ProductDetailsPage {...data.product} />;
+  return <ProductDetailsPage {...data.product} product={data.product} />;
 };
 
 export default ProductDetails;

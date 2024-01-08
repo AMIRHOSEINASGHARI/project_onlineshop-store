@@ -30,12 +30,12 @@ export const shorterText = (text, maxCharacter) => {
 };
 
 export const isInCart = (state, id) => {
-  const result = !!state.selectedItems.find((el) => el.id === id);
+  const result = !!state.selectedItems.find((el) => el._id === id);
   return result;
 };
 
 export const quantityCount = (state, id) => {
-  const index = state.selectedItems.findIndex((el) => el.id === id);
+  const index = state.selectedItems.findIndex((el) => el._id === id);
   if (index >= 0) {
     return state.selectedItems[index].quantity;
   } else {

@@ -1,5 +1,6 @@
 "use client";
 
+import { reducePrice } from "@/utils/functions";
 import React, { createContext, useReducer } from "react";
 
 export const CartContext = createContext();
@@ -16,10 +17,13 @@ const sum = (state) => {
     (total, item) => total + item.quantity,
     0
   );
-  const totalPrice = state.selectedItems.reduce(
-    (total, item) => total + item.quantity * item.price,
-    0
-  );
+  const totalPrice = state.selectedItems.reduce((total, item) => {
+    if (item.discount) {
+      return total + item.quantity * reducePrice(item.discount, item.price);
+    } else {
+      return total + item.quantity * item.price;
+    }
+  }, 0);
   return {
     totalItems,
     totalPrice,
@@ -29,7 +33,7 @@ const sum = (state) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case "add":
-      if (!state.selectedItems.find((el) => el.id === action.payload.id)) {
+      if (!state.selectedItems.find((el) => el._id === action.payload._id)) {
         state.selectedItems.push({
           ...action.payload,
           quantity: 1,
@@ -42,7 +46,7 @@ const reducer = (state, action) => {
       };
     case "increase":
       const indexI = state.selectedItems.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el._id === action.payload._id
       );
       state.selectedItems[indexI].quantity++;
       return {
@@ -52,7 +56,7 @@ const reducer = (state, action) => {
       };
     case "decrease":
       const indexD = state.selectedItems.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el._id === action.payload._id
       );
       state.selectedItems[indexD].quantity--;
       return {
@@ -62,7 +66,7 @@ const reducer = (state, action) => {
       };
     case "remove":
       const i = state.selectedItems.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el._id === action.payload._id
       );
       state.selectedItems.splice(i, 1);
       return {

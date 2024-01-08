@@ -4,8 +4,9 @@ const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   displayName: { type: String, required: true },
   password: { type: String, required: true },
-  phoneNumber: { type: Number },
-  address: { type: String },
+  avatar: { type: String, default: "" },
+  phoneNumber: { type: Number, default: 0 },
+  address: { type: String, default: "" },
   orders: [{ type: Schema.Types.ObjectId, ref: "StoreShopOrder", default: [] }],
   likes: [{ type: Schema.Types.ObjectId, ref: "StoreShopLike", default: [] }],
   comments: [
