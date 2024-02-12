@@ -3,7 +3,7 @@ import React from "react";
 
 async function getData() {
   const res = await fetch(`${process.env.API_URL}/api/store/products/all`, {
-    cache: "no-store",
+    next: { revalidate: 60 * 60 },
   });
   const data = await res.json();
   return data;
