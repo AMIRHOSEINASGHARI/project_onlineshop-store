@@ -1,5 +1,4 @@
 import ProductsPage from "@/components/pages/products/ProductsPage";
-import React from "react";
 
 async function getData() {
   const res = await fetch(`${process.env.API_URL}/api/store/products/all`, {
