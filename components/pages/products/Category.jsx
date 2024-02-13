@@ -1,6 +1,7 @@
 "use client";
 
 import Loader from "@/components/shared/Loader";
+import { LOCAL_API_URL } from "@/utils/apiConfig";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -9,7 +10,7 @@ const Category = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/product/category`)
+    fetch(`${LOCAL_API_URL}/api/product/category`)
       .then((res) => res.json())
       .then((json) => {
         if (json.success) setCategories(["all", ...json.categories]);

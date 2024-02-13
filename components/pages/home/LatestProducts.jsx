@@ -1,10 +1,11 @@
 import Carousel from "@/components/shared/Carousel";
+import { BASE_API_URL } from "@/utils/apiConfig";
 import Link from "next/link";
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 async function getData() {
-  const res = await fetch(`${process.env.API_URL}/api/store/products/latest`, {
+  const res = await fetch(`${BASE_API_URL}/api/store/products/latest`, {
     cache: "no-store",
   });
   const data = await res.json();

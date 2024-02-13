@@ -1,11 +1,11 @@
 import Carousel from "@/components/shared/Carousel";
+import { BASE_API_URL } from "@/utils/apiConfig";
 import React from "react";
 
 async function getData() {
-  const res = await fetch(
-    `${process.env.API_URL}/api/store/products/special-offer`,
-    { cache: "no-store" }
-  );
+  const res = await fetch(`${BASE_API_URL}/api/store/products/special-offer`, {
+    cache: "no-store",
+  });
   const data = await res.json();
   return data;
 }

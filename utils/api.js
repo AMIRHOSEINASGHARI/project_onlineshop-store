@@ -1,5 +1,7 @@
+import { LOCAL_API_URL } from "./apiConfig";
+
 export const createUser = async (userData) => {
-  const res = await fetch("/api/auth/register", {
+  const res = await fetch(`${LOCAL_API_URL}/api/auth/register`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: { "Content-type": "application/json" },
@@ -9,7 +11,7 @@ export const createUser = async (userData) => {
 };
 
 export const addComment = async (form) => {
-  const res = await fetch("/api/product/add-comment", {
+  const res = await fetch(`${LOCAL_API_URL}/api/product/add-comment`, {
     method: "POST",
     body: JSON.stringify(form),
     headers: { "Content-type": "application/json" },

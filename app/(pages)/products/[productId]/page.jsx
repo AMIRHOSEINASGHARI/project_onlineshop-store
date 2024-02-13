@@ -1,3 +1,5 @@
+import { BASE_API_URL } from "@/utils/apiConfig";
+
 const {
   default: ProductDetailsPage,
 } = require("@/components/pages/productDetails/ProductDetailsPage");
@@ -5,7 +7,7 @@ const {
 const ProductDetails = async ({ params }) => {
   async function getData() {
     const res = await fetch(
-      `${process.env.API_URL}/api/store/products/${params.productId}`,
+      `${BASE_API_URL}/api/store/products/${params.productId}`,
       {
         cache: "no-store",
       }

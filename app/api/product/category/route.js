@@ -1,8 +1,9 @@
+import { BASE_API_URL } from "@/utils/apiConfig";
 import connectDB from "@/utils/connectDB";
 import { NextResponse } from "next/server";
 
 const getCategories = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/product/category`);
+  const res = await fetch(`${BASE_API_URL}/api/product/category`);
   const data = await res.json();
   return data;
 };

@@ -1,7 +1,8 @@
 import ProductsPage from "@/components/pages/products/ProductsPage";
+import { BASE_API_URL } from "@/utils/apiConfig";
 
 async function getData(searchParams) {
-  const res = await fetch(`${process.env.API_URL}/api/store/products/all`, {
+  const res = await fetch(`${BASE_API_URL}/api/store/products/all`, {
     next: { revalidate: 60 * 60 },
   });
   const data = await res.json();
