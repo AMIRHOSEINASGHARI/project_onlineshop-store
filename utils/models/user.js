@@ -12,6 +12,7 @@ const userSchema = new Schema({
   comments: [
     { type: Schema.Types.ObjectId, ref: "StoreShopComment", default: [] },
   ],
+  cart: { type: Schema.Types.ObjectId, ref: "StoreShopCart" },
   createdAt: {
     type: Date,
     default: () => Date.now(),

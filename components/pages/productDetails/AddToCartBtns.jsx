@@ -40,15 +40,13 @@ const AddToCartBtns = ({ product }) => {
 
   return (
     <>
-      {!isInCart(state, product?._id) && (
-        <button
-          onClick={() => addHandler()}
-          className="bg-primary w-full rounded-lg text-white font-semibold py-3 text-sm hover:bg-blue-600 transition-all duration-100"
-        >
-          Add To Cart
-        </button>
-      )}
-      {isInCart(state, product?._id) && (
+      <button
+        // onClick={() => addHandler()}
+        className="bg-primary w-full rounded-lg text-white font-semibold py-3 text-sm hover:bg-blue-600 transition-all duration-100"
+      >
+        Add To Cart
+      </button>
+      {/* {isInCart(state, product?._id) && (
         <div className="flex items-center mb-5">
           <div className="border border-blue-300 flex items-center justify-center rounded-full w-[150px] overflow-hidden mr-5">
             <button
@@ -87,7 +85,7 @@ const AddToCartBtns = ({ product }) => {
             <IoCloseOutline />
           </button>
         </div>
-      )}
+      )} */}
     </>
   );
 };
