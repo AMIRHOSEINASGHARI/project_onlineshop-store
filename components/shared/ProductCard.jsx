@@ -50,7 +50,6 @@ const ProductCard = ({
         <Link
           href={`/products/${_id}`}
           className="w-full h-[180px] overflow-hidden flex justify-center items-center bg-gray-100 p-3"
-          target="_blank"
         >
           <Image
             src={image}
@@ -83,7 +82,6 @@ const ProductCard = ({
         <Link
           href={`/products/${_id}`}
           className="font-bold text-justify hover:text-blue-600 transition duration-100"
-          target="_blank"
         >
           {shorterText(title, 50)}
         </Link>

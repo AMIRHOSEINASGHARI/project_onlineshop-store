@@ -19,3 +19,14 @@ export const addComment = async (form) => {
   const data = await res.json();
   return data;
 };
+
+export const dispatchHandler = async (action, payload) => {
+  const res = await fetch(
+    `${LOCAL_API_URL}/api/user-cart?action_type=${action}&product_id=${payload}`,
+    {
+      method: "PATCH",
+    }
+  );
+  const data = await res.json();
+  return data;
+};

@@ -38,7 +38,7 @@ const Carousel = ({ data, moreLink, type, speed, arrows }) => {
       )}
       {data.map((item, index) => (
         <SplideSlide key={item._id} className="bg-gray-100 rounded-xl p-5">
-          <Link href={`/products/${item._id}`} target="_blank">
+          <Link href={`/products/${item._id}`}>
             <Image
               src={item?.image}
               width={150}

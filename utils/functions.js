@@ -11,6 +11,10 @@ export const reducePrice = (discount, price) => {
   return finalValue;
 };
 
+export const calcProductDiscount = (discount, price) => {
+  return (price * discount) / 100;
+};
+
 export const hashPassword = async (password) => {
   const hashPassword = await hash(password, 12);
   return hashPassword;
@@ -29,8 +33,8 @@ export const shorterText = (text, maxCharacter) => {
   }
 };
 
-export const isInCart = (state, id) => {
-  const result = !!state.selectedItems.find((el) => el._id === id);
+export const isInCart = (selectedItems, id) => {
+  const result = !!selectedItems.find((el) => el._id.equals(id));
   return result;
 };
 
@@ -41,4 +45,27 @@ export const quantityCount = (state, id) => {
   } else {
     return null;
   }
+};
+
+export const calcTotalProducts = (products) => {
+  return products.reduce((acc, cur) => acc + cur.quantity, 0);
+};
+
+// calculates user_cart total price based on product discount
+export const calcTotalPrice = (products) => {
+  return products.reduce(
+    (acc, cur) =>
+      acc + reducePrice(cur._doc.discount, cur._doc.price) * cur.quantity,
+    0
+  );
+};
+
+// calculates user_cart total discount price
+export const calcTotalDiscountPrice = (products) => {
+  return products.reduce(
+    (acc, cur) =>
+      acc +
+      calcProductDiscount(cur._doc.discount, cur._doc.price) * cur.quantity,
+    0
+  );
 };
