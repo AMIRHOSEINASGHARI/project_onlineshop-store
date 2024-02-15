@@ -26,7 +26,7 @@ const ProductDetailsPage = ({
   product,
 }) => {
   return (
-    <div className="pagePT mobilePx lg:pt-[100px] mobilePb mw space-y-20">
+    <div className="pagePT mobilePx lg:pt-[100px] mobilePb mw2 space-y-20">
       <section className="flex flex-col lg:flex-row gap-5">
         {/* IMAGE SECTION */}
         <div className="flex flex-col lg:flex-row items-center">

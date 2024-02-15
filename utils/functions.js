@@ -39,11 +39,11 @@ export const isInCart = (selectedItems, id) => {
 };
 
 export const quantityCount = (state, id) => {
-  const index = state.selectedItems.findIndex((el) => el._id === id);
+  const index = state.selectedItems.findIndex((el) => el._doc._id === id);
   if (index >= 0) {
     return state.selectedItems[index].quantity;
   } else {
-    return null;
+    return 0;
   }
 };
 

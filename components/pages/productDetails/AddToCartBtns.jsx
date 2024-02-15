@@ -3,13 +3,15 @@
 import Loader from "@/components/shared/Loader";
 import { dispatchHandler } from "@/utils/api";
 import { LOCAL_API_URL } from "@/utils/apiConfig";
-import { isInCart } from "@/utils/functions";
+import { isInCart, quantityCount } from "@/utils/functions";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PiTrashSimpleBold, PiMinusBold, PiPlusBold } from "react-icons/pi";
 
 // button main styles
-const btnClass = "bg-blue-500 text-white rounded-xl w-full py-2 font-semibold";
+const ADD_BTN_CLASS =
+  "bg-blue-500 text-white rounded-xl w-full py-2 font-semibold flex items-center justify-center gap-5";
 
 const AddToCartBtns = ({ product }) => {
   const session = useSession();
@@ -67,7 +69,7 @@ const AddToCartBtns = ({ product }) => {
       )}
       {session?.status === "unauthenticated" && !loading && (
         <button
-          className={btnClass}
+          className={ADD_BTN_CLASS}
           type="button"
           onClick={() =>
             router.push(`/login?backUrl=/products/${product?._id}`)
@@ -77,15 +79,59 @@ const AddToCartBtns = ({ product }) => {
         </button>
       )}
       {cart?.success && !loading && (
-        <>
-          <button
-            className={btnClass}
-            type="button"
-            onClick={() => clickHandler("ADD", product?._id)}
-          >
-            {dispatchLoader ? <Loader w={20} h={20} /> : "Add to cart"}
-          </button>
-        </>
+        <div className="flex items-center gap-5">
+          {quantityCount(cart?.userCart, product?._id) === 0 && (
+            <button
+              className={ADD_BTN_CLASS}
+              type="button"
+              onClick={() => clickHandler("ADD", product?._id)}
+            >
+              {dispatchLoader ? <Loader w={20} h={20} /> : "Add to cart"}
+            </button>
+          )}
+          {quantityCount(cart?.userCart, product?._id) === 1 && (
+            <button
+              type="button"
+              className="bg-gray-100 rounded-lg p-2"
+              onClick={() => clickHandler("REMOVE", product?._id)}
+            >
+              {dispatchLoader ? (
+                <Loader w={20} h={20} />
+              ) : (
+                <PiTrashSimpleBold className="text-xl" />
+              )}
+            </button>
+          )}
+          {quantityCount(cart?.userCart, product?._id) > 1 && (
+            <button
+              type="button"
+              className="bg-gray-100 rounded-lg p-2"
+              onClick={() => clickHandler("DECREASE", product?._id)}
+            >
+              {dispatchLoader ? (
+                <Loader w={20} h={20} />
+              ) : (
+                <PiMinusBold className="text-xl" />
+              )}
+            </button>
+          )}
+          {quantityCount(cart?.userCart, product?._id) >= 1 && (
+            <span>{quantityCount(cart?.userCart, product?._id)}</span>
+          )}
+          {quantityCount(cart?.userCart, product?._id) >= 1 && (
+            <button
+              type="button"
+              className="bg-gray-100 rounded-lg p-2"
+              onClick={() => clickHandler("INCREASE", product?._id)}
+            >
+              {dispatchLoader ? (
+                <Loader w={20} h={20} />
+              ) : (
+                <PiPlusBold className="text-xl" />
+              )}
+            </button>
+          )}
+        </div>
       )}
     </>
   );
