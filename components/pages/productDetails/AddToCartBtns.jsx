@@ -51,6 +51,7 @@ const AddToCartBtns = ({ product }) => {
         setDispatchLoader(false);
         setCart(result);
       } else {
+        setDispatchLoader(false);
         setError(true);
       }
     } catch (error) {

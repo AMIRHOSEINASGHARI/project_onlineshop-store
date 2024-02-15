@@ -80,20 +80,35 @@ export async function PATCH(req) {
       username: session.user.username,
     });
 
+    let selectedItems = user.cart.selectedItems;
+
     switch (action_type) {
       case "ADD":
-        const newSelectedItems = [
-          ...user.cart.selectedItems,
-          { ...product, quantity: 1 },
-        ];
-        user.cart.selectedItems = newSelectedItems;
-        user.cart.totalProducts = calcTotalProducts(newSelectedItems);
-        user.cart.totalPrice = calcTotalPrice(newSelectedItems);
-        user.cart.totalDiscountPrice = calcTotalDiscountPrice(newSelectedItems);
+        selectedItems = [...selectedItems, { ...product, quantity: 1 }];
+        user.cart.selectedItems = selectedItems;
+        user.cart.totalProducts = calcTotalProducts(selectedItems);
+        user.cart.totalPrice = calcTotalPrice(selectedItems);
+        user.cart.totalDiscountPrice = calcTotalDiscountPrice(selectedItems);
         user.save();
+        return NextResponse.json(
+          { msg: "ok", success: true, userCart: user.cart },
+          { status: 201 }
+        );
 
       case "REMOVE":
-      // remove
+        const product_index = selectedItems.findIndex(
+          (item) => item._doc._id === product_id
+        );
+        selectedItems.splice(product_index, 1);
+        user.cart.selectedItems = selectedItems;
+        user.cart.totalProducts = calcTotalProducts(selectedItems);
+        user.cart.totalPrice = calcTotalPrice(selectedItems);
+        user.cart.totalDiscountPrice = calcTotalDiscountPrice(selectedItems);
+        user.save();
+        return NextResponse.json(
+          { msg: "ok", success: true, userCart: user.cart },
+          { status: 201 }
+        );
 
       case "INCREASE":
       // increase
@@ -104,10 +119,6 @@ export async function PATCH(req) {
       case "CHECKOUT":
       // checkout
     }
-    return NextResponse.json(
-      { msg: "ok", success: true, userCart: user.cart },
-      { status: 201 }
-    );
   } catch (error) {
     return NextResponse.json(
       { msg: "Server Error!", success: false },
