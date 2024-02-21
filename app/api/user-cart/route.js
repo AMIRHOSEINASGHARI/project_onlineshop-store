@@ -81,6 +81,9 @@ export async function PATCH(req) {
     });
 
     let selectedItems = user.cart.selectedItems;
+    const product_index = selectedItems.findIndex((item) =>
+      item._doc._id.equals(product_id)
+    );
 
     switch (action_type) {
       case "ADD":
@@ -96,9 +99,6 @@ export async function PATCH(req) {
         );
 
       case "REMOVE":
-        const product_index = selectedItems.findIndex(
-          (item) => item._doc._id === product_id
-        );
         selectedItems.splice(product_index, 1);
         user.cart.selectedItems = selectedItems;
         user.cart.totalProducts = calcTotalProducts(selectedItems);
@@ -110,8 +110,18 @@ export async function PATCH(req) {
           { status: 201 }
         );
 
+      //TODO: there is a bug in INCREASE action. fix it later
       case "INCREASE":
-      // increase
+        selectedItems[product_index].quantity++;
+        user.cart.selectedItems = selectedItems;
+        user.cart.totalProducts = calcTotalProducts(selectedItems);
+        user.cart.totalPrice = calcTotalPrice(selectedItems);
+        user.cart.totalDiscountPrice = calcTotalDiscountPrice(selectedItems);
+        user.save();
+        return NextResponse.json(
+          { msg: "ok", success: true, userCart: user.cart },
+          { status: 201 }
+        );
 
       case "DECREASE":
       // decrease
